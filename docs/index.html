@@ -172,39 +172,49 @@ class User extends Model
   <section id="api" class="section api-docs">
     <div class="container">
       <h2 class="section-title">API Documentation</h2>
-      <div class="api-navigation">
-        <div class="search-box">
-          <input type="text" placeholder="Search API..." id="apiSearch">
-        </div>
-        <div class="api-tree">
-          <div class="api-group">
-            <h3>Core</h3>
-            <ul>
-              <li><a href="#router" class="active">Router</a></li>
-              <li><a href="#controller">Controller</a></li>
-              <li><a href="#model">Model</a></li>
-            </ul>
+      <div class="docs-layout">
+        <aside class="docs-sidebar">
+          <div class="search-box">
+            <input type="text" placeholder="Search API..." id="apiSearch">
+            <i class="fas fa-search search-icon"></i>
           </div>
-          <div class="api-group">
-            <h3>Database</h3>
-            <ul>
-              <li><a href="#query">Query Builder</a></li>
-              <li><a href="#migrations">Migrations</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="api-content">
-        <div class="api-method">
-          <div class="method-header">
-            <span class="method-badge get">GET</span>
-            <h3>Router::get(string $path, mixed $handler)</h3>
-          </div>
-          <div class="method-description">
-            <p>Register a new GET route with the router.</p>
-            <div class="parameters">
+          <nav class="docs-nav">
+            <div class="docs-group">
+              <h3>Core</h3>
+              <ul>
+                <li><a href="#router" class="active">Router</a></li>
+                <li><a href="#controller">Controller</a></li>
+                <li><a href="#model">Model</a></li>
+              </ul>
+            </div>
+            <div class="docs-group">
+              <h3>Database</h3>
+              <ul>
+                <li><a href="#query-builder">Query Builder</a></li>
+                <li><a href="#migrations">Migrations</a></li>
+                <li><a href="#seeding">Database Seeding</a></li>
+              </ul>
+            </div>
+          </nav>
+        </aside>
+        
+        <main class="docs-content">
+          <article id="router" class="docs-article">
+            <h2>Router</h2>
+            <section class="method">
+              <h3>
+                <span class="method-type">GET</span>
+                Router::get(string $path, mixed $handler)
+              </h3>
+              <p>Register a new GET route with the router.</p>
+              
               <h4>Parameters</h4>
-              <table>
+              <table class="params-table">
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                </tr>
                 <tr>
                   <td>$path</td>
                   <td>string</td>
@@ -216,14 +226,31 @@ class User extends Model
                   <td>Controller action or closure</td>
                 </tr>
               </table>
-            </div>
-            <div class="example">
-              <div class="code-window">
-                <pre><code>$router->get('/users/{id}', 'UserController@show');</code></pre>
-              </div>
-            </div>
-          </div>
-        </div>
+
+              <h4>Example</h4>
+              <pre><code class="language-php">$router->get('/users/{id}', 'UserController@show');</code></pre>
+            </section>
+            
+            <section class="method">
+              <h3>
+                <span class="method-type">POST</span>
+                Router::post(string $path, mixed $handler)
+              </h3>
+              <p>Register a new POST route with the router.</p>
+              <!-- Similar structure for other methods -->
+            </section>
+          </article>
+
+          <article id="controller" class="docs-article">
+            <h2>Controller</h2>
+            <!-- Controller documentation -->
+          </article>
+
+          <article id="model" class="docs-article">
+            <h2>Model</h2>
+            <!-- Model documentation -->
+          </article>
+        </main>
       </div>
     </div>
   </section>
