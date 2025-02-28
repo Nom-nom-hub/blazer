@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/blazer-logo.png" width="200" alt="Blazer Logo">
+  <img src="docs/assets/blazer-logo.svg" width="200" alt="Blazer Logo">
 </p>
 
 <h1 align="center">Blazer Framework</h1>
