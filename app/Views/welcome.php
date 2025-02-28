@@ -599,7 +599,9 @@
     <section class="hero">
       <div class="hero-bg"></div>
       <div class="container">
-        <span class="version-badge">Version 1.0.0</span>
+        <div class="version-badge">
+          Version 1.0.1
+        </div>
         <h1>Welcome to Blazer</h1>
         <p>A lightning-fast PHP framework for modern web applications.</p>
         
