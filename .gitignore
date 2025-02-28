@@ -3,4 +3,5 @@
 /storage/cache/*
 /storage/logs/*
 .env
-.DS_Store 
+.DS_Store
+._* 

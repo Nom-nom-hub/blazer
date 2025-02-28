@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blazer Framework - Lightning Fast PHP Framework</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="assets/blazer-logo.svg" alt="Blazer" class="logo-img">
+                <span>Blazer</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#docs">Documentation</a>
+                <a href="#examples">Examples</a>
+                <a href="https://github.com/Nom-nom-hub/blazer" class="github-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <button class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="search-toggle" onclick="toggleSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation...">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="version-badge">v1.0.1</div>
+                <h1>Build Fast PHP Apps</h1>
+                <p>A lightning-fast PHP framework for modern web applications</p>
+                <div class="cta-buttons">
+                    <a href="#quickstart" class="btn btn-primary">
+                        <i class="fas fa-bolt"></i> Quick Start
+                    </a>
+                    <a href="https://github.com/Nom-nom-hub/blazer" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg"></div>
+    </header>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized for speed with minimal overhead</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sync"></i>
+                    <h3>Live Reload</h3>
+                    <p>Built-in development server with auto-refresh</p>
+                </div>
+                <!-- More feature cards... -->
+            </div>
+        </div>
+    </section>
+
+    <section id="quickstart" class="section">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+            <div class="code-demo">
+                <div class="code-window">
+                    <div class="code-header">
+                        <span class="window-btn red"></span>
+                        <span class="window-btn yellow"></span>
+                        <span class="window-btn green"></span>
+                        <span class="code-title">Terminal</span>
+                    </div>
+                    <pre class="code-content"><code>composer create-project nomhub/blazer my-app
+cd my-app
+php blazer serve</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples" class="section">
+        <div class="container">
+            <h2 class="section-title">Code Examples</h2>
+            <div class="code-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="routes">Routes</button>
+                    <button class="tab-btn" data-tab="controller">Controller</button>
+                    <button class="tab-btn" data-tab="model">Model</button>
+                </div>
+                <div class="tab-content">
+                    <div id="routes" class="tab-panel active">
+                        <div class="code-window">
+                            <div class="code-header">
+                                <span class="window-btn red"></span>
+                                <span class="window-btn yellow"></span>
+                                <span class="window-btn green"></span>
+                                <span class="code-title">config/routes.php</span>
+                            </div>
+                            <pre class="code-content"><code>$router->get('/', 'HomeController@index');
+$router->get('/users/{id}', 'UserController@show');
+$router->post('/api/users', 'UserController@store');
+$router->put('/users/{id}', 'UserController@update');
+$router->delete('/users/{id}', 'UserController@destroy');</code></pre>
+                        </div>
+                    </div>
+                    <div id="controller" class="tab-panel">
+                        <div class="code-window">
+                            <div class="code-header">
+                                <span class="code-title">app/Controllers/HomeController.php</span>
+                            </div>
+                            <pre class="code-content"><code>namespace App\Controllers;
+
+use Blazer\Core\Controller;
+
+class HomeController extends Controller
+{
+    public function index()
+    {
+        return $this->view('welcome', [
+            'title' => 'Welcome to Blazer'
+        ]);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    <div id="model" class="tab-panel">
+                        <div class="code-window">
+                            <div class="code-header">
+                                <span class="code-title">app/Models/User.php</span>
+                            </div>
+                            <pre class="code-content"><code>namespace App\Models;
+
+use Blazer\Core\Model;
+
+class User extends Model
+{
+    protected static $table = 'users';
+    
+    public static function findActive()
+    {
+        return static::where('status', 'active')->get();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="api" class="section api-docs">
+        <div class="container">
+            <h2 class="section-title">API Documentation</h2>
+            <div class="api-navigation">
+                <div class="search-box">
+                    <input type="text" placeholder="Search API..." id="apiSearch">
+                </div>
+                <div class="api-tree">
+                    <div class="api-group">
+                        <h3>Core</h3>
+                        <ul>
+                            <li><a href="#router" class="active">Router</a></li>
+                            <li><a href="#controller">Controller</a></li>
+                            <li><a href="#model">Model</a></li>
+                        </ul>
+                    </div>
+                    <div class="api-group">
+                        <h3>Database</h3>
+                        <ul>
+                            <li><a href="#query">Query Builder</a></li>
+                            <li><a href="#migrations">Migrations</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="api-content">
+                <div class="api-method">
+                    <div class="method-header">
+                        <span class="method-badge get">GET</span>
+                        <h3>Router::get(string $path, mixed $handler)</h3>
+                    </div>
+                    <div class="method-description">
+                        <p>Register a new GET route with the router.</p>
+                        <div class="parameters">
+                            <h4>Parameters</h4>
+                            <table>
+                                <tr>
+                                    <td>$path</td>
+                                    <td>string</td>
+                                    <td>The URL pattern to match</td>
+                                </tr>
+                                <tr>
+                                    <td>$handler</td>
+                                    <td>mixed</td>
+                                    <td>Controller action or closure</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="example">
+                            <div class="code-window">
+                                <pre><code>$router->get('/users/{id}', 'UserController@show');</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tutorial" class="section tutorial">
+        <div class="container">
+            <h2 class="section-title">Interactive Tutorial</h2>
+            <div class="tutorial-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">Step 1 of 5</span>
+            </div>
+            <div class="tutorial-container">
+                <div class="tutorial-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <h3>Create a new project</h3>
+                        </div>
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <span class="window-btn red"></span>
+                                <span class="window-btn yellow"></span>
+                                <span class="window-btn green"></span>
+                                <span>Terminal</span>
+                            </div>
+                            <pre class="terminal-content"><code class="command-input" contenteditable="true">composer create-project nomhub/blazer my-app</code></pre>
+                            <button class="run-btn">Run Command</button>
+                        </div>
+                    </div>
+
+                    <div class="step" data-step="2">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <h3>Define your first route</h3>
+                        </div>
+                        <div class="code-playground" data-validate="route">
+                            <div class="code-header">
+                                <span>routes.php</span>
+                                <button class="reset-btn" title="Reset Code"><i class="fas fa-undo"></i></button>
+                            </div>
+                            <pre><code class="language-php" contenteditable="true">// Try creating a route that returns 'Hello World'
+$router->get('/', function() {
+    // Your code here
+});</code></pre>
+                            <div class="code-hints">
+                                <button class="hint-btn">Need a hint?</button>
+                                <div class="hint-content">
+                                    <p>Return a string 'Hello World' from the route closure</p>
+                                </div>
+                            </div>
+                            <button class="check-btn">Check Code</button>
+                        </div>
+                    </div>
+
+                    <div class="step" data-step="3">
+                        <div class="step-header">
+                            <span class="step-number">3</span>
+                            <h3>Create your first controller</h3>
+                        </div>
+                        <div class="code-playground" data-validate="controller">
+                            <div class="code-header">
+                                <span>HomeController.php</span>
+                            </div>
+                            <pre><code class="language-php" contenteditable="true">namespace App\Controllers;
+
+// Create a controller that extends the base Controller
+// and add an index method</code></pre>
+                            <div class="code-hints">
+                                <button class="hint-btn">Need a hint?</button>
+                                <div class="hint-content">
+                                    <p>Use 'extends Controller' and create a public index() method</p>
+                                </div>
+                            </div>
+                            <button class="check-btn">Check Code</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tutorial-preview">
+                    <div class="browser-window">
+                        <div class="browser-header">
+                            <div class="browser-actions">
+                                <span class="browser-dot"></span>
+                                <span class="browser-dot"></span>
+                                <span class="browser-dot"></span>
+                            </div>
+                            <div class="browser-address">
+                                <span>http://localhost:8000</span>
+                                <button class="refresh-btn"><i class="fas fa-sync"></i></button>
+                            </div>
+                        </div>
+                        <div class="browser-content">
+                            <!-- Live preview here -->
+                        </div>
+                    </div>
+                    <div class="console-output">
+                        <div class="console-header">
+                            <span>Console Output</span>
+                            <button class="clear-console"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="console-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/blazer-logo.svg" alt="Blazer">
+                    <p>Made with ❤️ by <a href="https://github.com/Nom-nom-hub">Teck</a></p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Documentation</h4>
+                        <a href="#quickstart">Getting Started</a>
+                        <a href="#docs">User Guide</a>
+                        <a href="#api">API Reference</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Community</h4>
+                        <a href="https://github.com/Nom-nom-hub/blazer">GitHub</a>
+                        <a href="#discord">Discord</a>
+                        <a href="#twitter">Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+</body>
+</html> 
