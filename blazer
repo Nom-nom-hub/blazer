@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+
+if (php_sapi_name() !== 'cli') {
+    exit;
+}
+
+require __DIR__ . '/vendor/autoload.php';
+
+// Define the application root directory
+define('ROOT_DIR', __DIR__);
+
+// Required core files
+require_once ROOT_DIR . '/src/Core/Cache.php';
+require_once ROOT_DIR . '/src/Core/ClassLoader.php';
+
+// Register class loader
+Blazer\Core\ClassLoader::register();
+
+$command = $argv[1] ?? 'help';
+$args = array_slice($argv, 2);
+
+switch ($command) {
+    case 'new':
+        $cmd = new Blazer\Core\Console\Commands\NewCommand();
+        $cmd->run($args);
+        break;
+        
+    case 'serve':
+        $cmd = new Blazer\Core\Console\Commands\ServeCommand();
+        $cmd->run($args);
+        break;
+        
+    case 'help':
+    default:
+        echo "Blazer Framework CLI\n\n";
+        echo "Usage:\n";
+        echo "  blazer new PROJECT-NAME    Create a new Blazer project\n";
+        echo "  blazer serve              Start the development server\n";
+        echo "  blazer help               Show this help message\n";
+        break;
+} 
